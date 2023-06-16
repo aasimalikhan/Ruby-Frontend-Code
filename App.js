@@ -17,7 +17,7 @@ const App = () => {
       <User
         userData={userData}
         userLoggedIn={userLoggedIn}
-        setUserLoggedIn={setUserLogged}
+        setUserLoggedIn={setUserLoggedIn}
       />
       <div>App</div>
     </>
