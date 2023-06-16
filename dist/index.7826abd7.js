@@ -2964,6 +2964,7 @@ const App = ()=>{
             /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _userDefault.default), {
                 userData: userData,
                 userLoggedIn: userLoggedIn,
+                setUserData: setUserData,
                 setUserLoggedIn: setUserLoggedIn
             }, void 0, false, {
                 fileName: "App.js",
@@ -2974,7 +2975,7 @@ const App = ()=>{
                 children: "App"
             }, void 0, false, {
                 fileName: "App.js",
-                lineNumber: 22,
+                lineNumber: 23,
                 columnNumber: 7
             }, undefined)
         ]
@@ -2985,7 +2986,7 @@ _c = App;
 const root = (0, _clientDefault.default).createRoot(document.getElementById("root"));
 root.render(/*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)(App, {}, void 0, false, {
     fileName: "App.js",
-    lineNumber: 28,
+    lineNumber: 29,
     columnNumber: 13
 }, undefined));
 var _c;
