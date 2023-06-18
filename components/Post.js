@@ -16,7 +16,7 @@ const Post = (props) => {
   const handlePostSubmit = async (event) => {
     try {
       event.preventDefault();
-      const { user_id } = props.loggedUserData.id;
+      const user_id = props.loggedUserData.id;
       // const { username, password, email } = props.userData;
       const { text, description } = postData;
 
