@@ -4,12 +4,13 @@ import User from "./components/User";
 
 const App = () => {
   const [userData, setUserData] = useState({
-    id: "",
+    // id: "",
     username: "",
     email: "",
-    password_digest: "",
+    password: "",
   });
 
+  const [loggedUserData, setLoggedUserData] = useState(null);
   const [userLoggedIn, setUserLoggedIn] = useState(false);
 
   return (
@@ -19,6 +20,8 @@ const App = () => {
         userLoggedIn={userLoggedIn}
         setUserData={setUserData}
         setUserLoggedIn={setUserLoggedIn}
+        loggedUserData={loggedUserData}
+        setLoggedUserData={setLoggedUserData}
       />
       <div>App</div>
     </>

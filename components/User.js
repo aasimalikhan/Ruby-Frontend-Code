@@ -1,4 +1,5 @@
 import React from "react";
+import Post from "./Post";
 
 const User = (props) => {
   const handleInputChange = (event) => {
@@ -12,7 +13,7 @@ const User = (props) => {
     try {
       event.preventDefault();
 
-      const { username, password_digest, email } = props.userData;
+      const { username, password, email } = props.userData;
 
       const response = await fetch("http://localhost:3000/users", {
         method: "POST",
@@ -23,11 +24,12 @@ const User = (props) => {
           user: {
             username,
             email,
-            password_digest,
+            password,
           },
         }),
       });
       const responseData = await response.json();
+      props.setLoggedUserData(responseData);
       console.log(responseData);
     } catch (err) {
       console.log(err);
@@ -35,31 +37,38 @@ const User = (props) => {
   };
   return (
     <>
-      <form onSubmit={handleUserDataSubmit}>
-        <input
-          type="text"
-          name="username"
-          placeholder="Username"
-          value={props.userData.username}
-          onChange={handleInputChange}
-        />
-        <input
-          type="text"
-          name="email"
-          placeholder="Email"
-          value={props.userData.email}
-          onChange={handleInputChange}
-        />
-        <input
-          type="password"
-          name="password_digest"
-          placeholder="Password"
-          value={props.userData.password_digest}
-          onChange={handleInputChange}
-        />
+      <div className="user_create_container">
+        <form onSubmit={handleUserDataSubmit}>
+          <input
+            type="text"
+            name="username"
+            placeholder="Username"
+            value={props.userData.username}
+            onChange={handleInputChange}
+          />
+          <input
+            type="text"
+            name="email"
+            placeholder="Email"
+            value={props.userData.email}
+            onChange={handleInputChange}
+          />
+          <input
+            type="password"
+            name="password"
+            placeholder="Password"
+            value={props.userData.password_digest}
+            onChange={handleInputChange}
+          />
 
-        <button type="submit">Submit</button>
-      </form>
+          <button type="submit">Submit</button>
+        </form>
+      </div>
+      {props.userLoggedIn ? (
+        <Post loggedUserData={props.loggedUserData} />
+      ) : (
+        <></>
+      )}
       {props.userLoggedIn ? <h1>User logged</h1> : <h1> User not logged</h1>}
     </>
   );
