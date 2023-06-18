@@ -6,6 +6,8 @@ const Post = (props) => {
     description: "",
   });
 
+  const [postAllData, setPostAllData] = useState([]);
+
   const handleInputChange = (event) => {
     setPostData({
       ...postData,
@@ -13,6 +15,7 @@ const Post = (props) => {
     });
   };
   console.log(props);
+
   const handlePostSubmit = async (event) => {
     try {
       event.preventDefault();
@@ -42,6 +45,13 @@ const Post = (props) => {
       console.log(err);
     }
   };
+
+  const getAllPosts = async (req, res) => {
+    const response = await fetch("http://localhost:3000/posts");
+    const responseData = await response.json();
+    setPostAllData(responseData);
+    console.log(responseData);
+  };
   return (
     <div className="post_create_container">
       <form onSubmit={handlePostSubmit}>
@@ -62,6 +72,20 @@ const Post = (props) => {
 
         <button type="submit">Submit</button>
       </form>
+
+      <button type="submit" onClick={getAllPosts}>
+        Get All Posts
+      </button>
+      {postAllData.length ? (
+        <div className="posts_container">
+          {postAllData.map((data) => {
+            console.log(data);
+            return <h1>Post1</h1>;
+          })}
+        </div>
+      ) : (
+        <></>
+      )}
     </div>
   );
 };
