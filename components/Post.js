@@ -12,7 +12,7 @@ const Post = (props) => {
       [event.target.name]: event.target.value,
     });
   };
-
+  console.log(props);
   const handlePostSubmit = async (event) => {
     try {
       event.preventDefault();

@@ -6,7 +6,8 @@
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "start": "parcel index.html",
-    "build": "parcel build index.html"
+    "build": "parcel build index.html",
+    "update": "git fetch origin && git merge origin main && npm run start"
   },
   "author": "",
   "license": "ISC",
