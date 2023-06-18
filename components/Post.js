@@ -82,7 +82,7 @@ const Post = (props) => {
             console.log(data);
             // const timestamp = '2023-06-18T12:50:37.966Z';
             const date = new Date(data.created_at);
-
+            console.log(date);
             const options = { year: "numeric", month: "long", day: "numeric" };
             const formattedDate = date.toLocaleDateString(undefined, options);
 
