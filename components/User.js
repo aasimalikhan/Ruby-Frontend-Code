@@ -36,6 +36,8 @@ const User = (props) => {
       console.log(err);
     }
   };
+
+  console.log(props);
   return (
     <>
       <div className="user_create_container">
