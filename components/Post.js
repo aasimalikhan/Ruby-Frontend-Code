@@ -42,27 +42,28 @@ const Post = (props) => {
       console.log(err);
     }
   };
+  return (
+    <div className="post_create_container">
+      <form onSubmit={handlePostSubmit}>
+        <input
+          type="text"
+          name="text"
+          placeholder="Text"
+          value={postData.text}
+          onChange={handleInputChange}
+        />
+        <input
+          type="text"
+          name="description"
+          placeholder="Description"
+          value={postData.description}
+          onChange={handleInputChange}
+        />
 
-  <div className="post_create_container">
-    <form onSubmit={handlePostSubmit}>
-      <input
-        type="text"
-        name="text"
-        placeholder="Text"
-        value={postData.text}
-        onChange={handleInputChange}
-      />
-      <input
-        type="text"
-        name="description"
-        placeholder="Description"
-        value={postData.description}
-        onChange={handleInputChange}
-      />
-
-      <button type="submit">Submit</button>
-    </form>
-  </div>;
+        <button type="submit">Submit</button>
+      </form>
+    </div>
+  );
 };
 
 export default Post;
