@@ -2953,11 +2953,12 @@ var _s = $RefreshSig$();
 const App = ()=>{
     _s();
     const [userData, setUserData] = (0, _react.useState)({
-        id: "",
+        // id: "",
         username: "",
         email: "",
-        password_digest: ""
+        password: ""
     });
+    const [loggedUserData, setLoggedUserData] = (0, _react.useState)(null);
     const [userLoggedIn, setUserLoggedIn] = (0, _react.useState)(false);
     return /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _jsxDevRuntime.Fragment), {
         children: [
@@ -2965,28 +2966,30 @@ const App = ()=>{
                 userData: userData,
                 userLoggedIn: userLoggedIn,
                 setUserData: setUserData,
-                setUserLoggedIn: setUserLoggedIn
+                setUserLoggedIn: setUserLoggedIn,
+                loggedUserData: loggedUserData,
+                setLoggedUserData: setLoggedUserData
             }, void 0, false, {
                 fileName: "App.js",
-                lineNumber: 17,
+                lineNumber: 18,
                 columnNumber: 7
             }, undefined),
             /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("div", {
                 children: "App"
             }, void 0, false, {
                 fileName: "App.js",
-                lineNumber: 23,
+                lineNumber: 26,
                 columnNumber: 7
             }, undefined)
         ]
     }, void 0, true);
 };
-_s(App, "UkuG5OdaZctCG9mKIyD+aUZahJs=");
+_s(App, "kOy0XRZoyl7X5gu/u7I8wq5cxbU=");
 _c = App;
 const root = (0, _clientDefault.default).createRoot(document.getElementById("root"));
 root.render(/*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)(App, {}, void 0, false, {
     fileName: "App.js",
-    lineNumber: 29,
+    lineNumber: 32,
     columnNumber: 13
 }, undefined));
 var _c;
@@ -27194,6 +27197,8 @@ parcelHelpers.defineInteropFlag(exports);
 var _jsxDevRuntime = require("react/jsx-dev-runtime");
 var _react = require("react");
 var _reactDefault = parcelHelpers.interopDefault(_react);
+var _post = require("./Post");
+var _postDefault = parcelHelpers.interopDefault(_post);
 const User = (props)=>{
     const handleInputChange = (event)=>{
         props.setUserData({
@@ -27204,7 +27209,7 @@ const User = (props)=>{
     const handleUserDataSubmit = async (event)=>{
         try {
             event.preventDefault();
-            const { username , password_digest , email  } = props.userData;
+            const { username , password , email  } = props.userData;
             const response = await fetch("http://localhost:3000/users", {
                 method: "POST",
                 headers: {
@@ -27214,11 +27219,12 @@ const User = (props)=>{
                     user: {
                         username,
                         email,
-                        password_digest
+                        password
                     }
                 })
             });
             const responseData = await response.json();
+            props.setLoggedUserData(responseData);
             console.log(responseData);
         } catch (err) {
             console.log(err);
@@ -27226,67 +27232,81 @@ const User = (props)=>{
     };
     return /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _jsxDevRuntime.Fragment), {
         children: [
-            /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("form", {
-                onSubmit: handleUserDataSubmit,
-                children: [
-                    /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("input", {
-                        type: "text",
-                        name: "username",
-                        placeholder: "Username",
-                        value: props.userData.username,
-                        onChange: handleInputChange
-                    }, void 0, false, {
-                        fileName: "components/User.js",
-                        lineNumber: 39,
-                        columnNumber: 9
-                    }, undefined),
-                    /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("input", {
-                        type: "text",
-                        name: "email",
-                        placeholder: "Email",
-                        value: props.userData.email,
-                        onChange: handleInputChange
-                    }, void 0, false, {
-                        fileName: "components/User.js",
-                        lineNumber: 46,
-                        columnNumber: 9
-                    }, undefined),
-                    /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("input", {
-                        type: "password",
-                        name: "password_digest",
-                        placeholder: "Password",
-                        value: props.userData.password_digest,
-                        onChange: handleInputChange
-                    }, void 0, false, {
-                        fileName: "components/User.js",
-                        lineNumber: 53,
-                        columnNumber: 9
-                    }, undefined),
-                    /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("button", {
-                        type: "submit",
-                        children: "Submit"
-                    }, void 0, false, {
-                        fileName: "components/User.js",
-                        lineNumber: 61,
-                        columnNumber: 9
-                    }, undefined)
-                ]
-            }, void 0, true, {
+            /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("div", {
+                className: "user_create_container",
+                children: /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("form", {
+                    onSubmit: handleUserDataSubmit,
+                    children: [
+                        /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("input", {
+                            type: "text",
+                            name: "username",
+                            placeholder: "Username",
+                            value: props.userData.username,
+                            onChange: handleInputChange
+                        }, void 0, false, {
+                            fileName: "components/User.js",
+                            lineNumber: 42,
+                            columnNumber: 11
+                        }, undefined),
+                        /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("input", {
+                            type: "text",
+                            name: "email",
+                            placeholder: "Email",
+                            value: props.userData.email,
+                            onChange: handleInputChange
+                        }, void 0, false, {
+                            fileName: "components/User.js",
+                            lineNumber: 49,
+                            columnNumber: 11
+                        }, undefined),
+                        /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("input", {
+                            type: "password",
+                            name: "password",
+                            placeholder: "Password",
+                            value: props.userData.password_digest,
+                            onChange: handleInputChange
+                        }, void 0, false, {
+                            fileName: "components/User.js",
+                            lineNumber: 56,
+                            columnNumber: 11
+                        }, undefined),
+                        /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("button", {
+                            type: "submit",
+                            children: "Submit"
+                        }, void 0, false, {
+                            fileName: "components/User.js",
+                            lineNumber: 64,
+                            columnNumber: 11
+                        }, undefined)
+                    ]
+                }, void 0, true, {
+                    fileName: "components/User.js",
+                    lineNumber: 41,
+                    columnNumber: 9
+                }, undefined)
+            }, void 0, false, {
                 fileName: "components/User.js",
-                lineNumber: 38,
+                lineNumber: 40,
                 columnNumber: 7
             }, undefined),
+            props.userLoggedIn ? /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _postDefault.default), {
+                loggedUserData: props.loggedUserData
+            }, void 0, false, {
+                fileName: "components/User.js",
+                lineNumber: 68,
+                columnNumber: 9
+            }, undefined) : /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _jsxDevRuntime.Fragment), {}, void 0, false),
             props.userLoggedIn ? /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("h1", {
                 children: "User logged"
             }, void 0, false, {
                 fileName: "components/User.js",
-                lineNumber: 63,
+                lineNumber: 72,
                 columnNumber: 29
             }, undefined) : /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("h1", {
                 children: " User not logged"
             }, void 0, false, {
                 fileName: "components/User.js",
-                lineNumber: 63,
+                lineNumber: 72,
                 columnNumber: 52
             }, undefined)
         ]
@@ -27302,7 +27322,7 @@ $RefreshReg$(_c, "User");
   window.$RefreshReg$ = prevRefreshReg;
   window.$RefreshSig$ = prevRefreshSig;
 }
-},{"react/jsx-dev-runtime":"iTorj","react":"21dqq","@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3","@parcel/transformer-react-refresh-wrap/lib/helpers/helpers.js":"km3Ru"}],"gkKU3":[function(require,module,exports) {
+},{"react/jsx-dev-runtime":"iTorj","react":"21dqq","@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3","@parcel/transformer-react-refresh-wrap/lib/helpers/helpers.js":"km3Ru","./Post":"lD67i"}],"gkKU3":[function(require,module,exports) {
 exports.interopDefault = function(a) {
     return a && a.__esModule ? a : {
         default: a
@@ -27470,6 +27490,114 @@ function registerExportsForReactRefresh(module1) {
     }
 }
 
-},{"7422ead32dcc1e6b":"786KC"}]},["cIuSe","1xC6H","2Ew96"], "2Ew96", "parcelRequireb562")
+},{"7422ead32dcc1e6b":"786KC"}],"lD67i":[function(require,module,exports) {
+var $parcel$ReactRefreshHelpers$de06 = require("@parcel/transformer-react-refresh-wrap/lib/helpers/helpers.js");
+var prevRefreshReg = window.$RefreshReg$;
+var prevRefreshSig = window.$RefreshSig$;
+$parcel$ReactRefreshHelpers$de06.prelude(module);
+
+try {
+var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
+parcelHelpers.defineInteropFlag(exports);
+var _jsxDevRuntime = require("react/jsx-dev-runtime");
+var _react = require("react");
+var _reactDefault = parcelHelpers.interopDefault(_react);
+var _s = $RefreshSig$();
+const Post = (props)=>{
+    _s();
+    const [postData, setPostData] = useState({
+        text: "",
+        description: ""
+    });
+    const handleInputChange = (event)=>{
+        setPostData({
+            ...postData,
+            [event.target.name]: event.target.value
+        });
+    };
+    const handlePostSubmit = async (event)=>{
+        try {
+            event.preventDefault();
+            const { user_id  } = props.loggedInUser.id;
+            // const { username, password, email } = props.userData;
+            const { text , description  } = postData;
+            const response = await fetch(`http://localhost:3000/users/${user_id}/posts`, {
+                method: "POST",
+                headers: {
+                    "Content-Type": "application/json"
+                },
+                body: JSON.stringify({
+                    post: {
+                        text,
+                        description
+                    }
+                })
+            });
+            const responseData = await response.json();
+            // props.setLoggedUserData(responseData);
+            console.log(responseData);
+        } catch (err) {
+            console.log(err);
+        }
+    };
+    /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("div", {
+        className: "post_create_container",
+        children: /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("form", {
+            onSubmit: handlePostSubmit,
+            children: [
+                /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("input", {
+                    type: "text",
+                    name: "text",
+                    placeholder: "Text",
+                    value: postData.text,
+                    onChange: handleInputChange
+                }, void 0, false, {
+                    fileName: "components/Post.js",
+                    lineNumber: 48,
+                    columnNumber: 7
+                }, undefined),
+                /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("input", {
+                    type: "text",
+                    name: "description",
+                    placeholder: "Description",
+                    value: postData.description,
+                    onChange: handleInputChange
+                }, void 0, false, {
+                    fileName: "components/Post.js",
+                    lineNumber: 55,
+                    columnNumber: 7
+                }, undefined),
+                /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("button", {
+                    type: "submit",
+                    children: "Submit"
+                }, void 0, false, {
+                    fileName: "components/Post.js",
+                    lineNumber: 63,
+                    columnNumber: 7
+                }, undefined)
+            ]
+        }, void 0, true, {
+            fileName: "components/Post.js",
+            lineNumber: 47,
+            columnNumber: 5
+        }, undefined)
+    }, void 0, false, {
+        fileName: "components/Post.js",
+        lineNumber: 46,
+        columnNumber: 3
+    }, undefined);
+};
+_s(Post, "d/NDrYW+Ce0JcMSTUwVjFV/3Mnk=");
+_c = Post;
+exports.default = Post;
+var _c;
+$RefreshReg$(_c, "Post");
+
+  $parcel$ReactRefreshHelpers$de06.postlude(module);
+} finally {
+  window.$RefreshReg$ = prevRefreshReg;
+  window.$RefreshSig$ = prevRefreshSig;
+}
+},{"react/jsx-dev-runtime":"iTorj","react":"21dqq","@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3","@parcel/transformer-react-refresh-wrap/lib/helpers/helpers.js":"km3Ru"}]},["cIuSe","1xC6H","2Ew96"], "2Ew96", "parcelRequireb562")
 
 //# sourceMappingURL=index.7826abd7.js.map

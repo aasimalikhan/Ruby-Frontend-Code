@@ -30,6 +30,7 @@ const User = (props) => {
       });
       const responseData = await response.json();
       props.setLoggedUserData(responseData);
+      props.setUserLoggedIn(true);
       console.log(responseData);
     } catch (err) {
       console.log(err);
